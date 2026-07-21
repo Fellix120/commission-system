@@ -32,6 +32,8 @@ class Kernel extends HttpKernel
 
     protected $middlewareAliases = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'role' => \App\Http\Middleware\AdminMiddleware::class,
