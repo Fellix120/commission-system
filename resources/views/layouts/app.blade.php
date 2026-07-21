@@ -873,26 +873,141 @@
     }
 
 
-    .user-menu { position: relative; }
-    .user-menu__button { border: 0; cursor: pointer; font-family: inherit; }
-    .user-menu__dropdown { display: none; position: absolute; right: 0; top: calc(100% + 10px); width: 280px; background: #fff; border: 1px solid var(--g-grey-300); border-radius: 14px; box-shadow: var(--shadow-2); padding: 10px; z-index: 1200; }
-    .user-menu.is-open .user-menu__dropdown { display: block; }
-    .user-menu__profile { display: flex; gap: 12px; align-items: center; padding: 10px; border-bottom: 1px solid var(--g-grey-100); margin-bottom: 6px; }
-    .user-menu__profile strong, .user-menu__profile span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 185px; }
-    .user-menu__profile span { color: var(--g-grey-700); font-size: 12px; margin-top: 2px; }
-    .avatar--large { width: 42px; height: 42px; flex: 0 0 42px; }
-    .user-menu__dropdown a, .user-menu__dropdown button { width: 100%; display: flex; align-items: center; gap: 10px; border: 0; background: transparent; color: var(--g-grey-900); text-decoration: none; padding: 10px; border-radius: 8px; cursor: pointer; font: inherit; text-align: left; }
-    .user-menu__dropdown a:hover, .user-menu__dropdown button:hover { background: var(--g-grey-100); }
-    .user-menu__dropdown .material-symbols-outlined { font-size: 20px; color: var(--g-grey-700); }
-    .account-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
-    .account-card { padding: 22px; }
-    .account-form { margin-top: 20px; }
-    .form-field { margin-bottom: 17px; }
-    .form-field label { display: block; margin-bottom: 7px; font-weight: 500; }
-    .form-field input { width: 100%; height: 43px; border: 1px solid var(--g-grey-300); border-radius: 8px; padding: 0 12px; font: inherit; outline: none; }
-    .form-field input:focus { border-color: var(--g-blue); box-shadow: 0 0 0 3px rgba(26,115,232,.12); }
-    .field-error { margin-top: 5px; color: var(--g-red); font-size: 12px; }
-    @media (max-width: 800px) { .account-grid { grid-template-columns: 1fr; } }
+    .user-menu {
+      position: relative;
+    }
+
+    .user-menu__button {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .user-menu__dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      width: 280px;
+      background: #fff;
+      border: 1px solid var(--g-grey-300);
+      border-radius: 14px;
+      box-shadow: var(--shadow-2);
+      padding: 10px;
+      z-index: 1200;
+    }
+
+    .user-menu.is-open .user-menu__dropdown {
+      display: block;
+    }
+
+    .user-menu__profile {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid var(--g-grey-100);
+      margin-bottom: 6px;
+    }
+
+    .user-menu__profile strong,
+    .user-menu__profile span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 185px;
+    }
+
+    .user-menu__profile span {
+      color: var(--g-grey-700);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .avatar--large {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+    }
+
+    .user-menu__dropdown a,
+    .user-menu__dropdown button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 0;
+      background: transparent;
+      color: var(--g-grey-900);
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+    }
+
+    .user-menu__dropdown a:hover,
+    .user-menu__dropdown button:hover {
+      background: var(--g-grey-100);
+    }
+
+    .user-menu__dropdown .material-symbols-outlined {
+      font-size: 20px;
+      color: var(--g-grey-700);
+    }
+
+    .account-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .account-card {
+      padding: 22px;
+    }
+
+    .account-form {
+      margin-top: 20px;
+    }
+
+    .form-field {
+      margin-bottom: 17px;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 500;
+    }
+
+    .form-field input {
+      width: 100%;
+      height: 43px;
+      border: 1px solid var(--g-grey-300);
+      border-radius: 8px;
+      padding: 0 12px;
+      font: inherit;
+      outline: none;
+    }
+
+    .form-field input:focus {
+      border-color: var(--g-blue);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, .12);
+    }
+
+    .field-error {
+      margin-top: 5px;
+      color: var(--g-red);
+      font-size: 12px;
+    }
+
+    @media (max-width: 800px) {
+      .account-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     @media (max-width:960px) {
       .rail {
@@ -959,15 +1074,38 @@
       background-color: var(--choices-bg-color-dropdown, #fff);
       border: var(--choices-base-border, 1px solid) var(--choices-keyline-color, #ddd);
       top: 100%;
-      margin-top Shorthand property to set values for the thickness of the margin area. If left is omitted,
-      it is the same as right. If bottom is omitted it is the same as top,
-      if right is omitted it is the same as top. Negative values for margin properties are allowed,
-      but there may be implementation-specific limits.. Widely available across major browsers (Baseline since January 2018) Learn more Don't show
-: -1px;
+      margin-top: -1px;
       border-bottom-left-radius: var(--choices-border-radius, 2.5px);
       border-bottom-right-radius: var(--choices-border-radius, 2.5px);
       overflow: hidden;
       word-break: break-all;
+    }
+
+    /* SweetAlert2 – match the app's type and button shapes */
+    .swal2-popup {
+      font-family: 'Google Sans', 'Roboto', sans-serif !important;
+      border-radius: 14px !important;
+      font-size: 14px !important;
+    }
+
+    .swal2-title {
+      font-size: 20px !important;
+      font-weight: 500 !important;
+      color: var(--g-grey-900) !important;
+    }
+
+    .swal2-html-container {
+      color: var(--g-grey-700) !important;
+      font-size: 14px !important;
+      line-height: 1.6 !important;
+    }
+
+    .swal2-styled {
+      border-radius: 18px !important;
+      font-weight: 500 !important;
+      font-size: 14px !important;
+      padding: 8px 20px !important;
+      box-shadow: none !important;
     }
   </style>
 </head>
@@ -995,7 +1133,8 @@
         <span class="material-symbols-outlined">upload_file</span>
       </a>
       <div class="user-menu">
-        <button type="button" class="avatar user-menu__button" onclick="this.parentElement.classList.toggle('is-open')" aria-label="Account menu">
+        <button type="button" class="avatar user-menu__button" onclick="this.parentElement.classList.toggle('is-open')"
+          aria-label="Account menu">
           {{ auth()->user()->initials() }}
         </button>
         <div class="user-menu__dropdown">
@@ -1006,7 +1145,8 @@
               <span>{{ auth()->user()->email }}</span>
             </div>
           </div>
-          <a href="{{ route('account.edit') }}"><span class="material-symbols-outlined">manage_accounts</span> My account</a>
+          <a href="{{ route('account.edit') }}"><span class="material-symbols-outlined">manage_accounts</span> My
+            account</a>
           <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit"><span class="material-symbols-outlined">logout</span> Logout</button>
@@ -1086,6 +1226,7 @@
     </div>
   @endif
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     setTimeout(() => document.querySelectorAll('.snackbar').forEach(s => s.remove()), 6000);
 
@@ -1095,14 +1236,48 @@
       });
     });
 
+    // One SweetAlert2 dialog for every confirmation in the app. Falls back to
+    // window.confirm if the CDN script did not load, and returns a promise
+    // either way so callers can share one code path.
+    function appConfirm(opts) {
+      if (typeof Swal === 'undefined') {
+        return Promise.resolve(window.confirm(opts.text));
+      }
+      return Swal.fire({
+        title: opts.title || 'Are you sure?',
+        text: opts.text,
+        icon: opts.danger ? 'warning' : 'question',
+        showCancelButton: true,
+        confirmButtonText: opts.button || 'Yes, continue',
+        cancelButtonText: 'Cancel',
+        confirmButtonColor: opts.danger ? '#d93025' : '#1a73e8',
+        reverseButtons: true,
+        focusCancel: !!opts.danger
+      }).then(result => result.isConfirmed);
+    }
+
     // Any form carrying data-confirm asks before it submits. Delegated, so it
     // covers rows rendered on every page without per-view wiring.
+    //
+    // The dialog is async, so the flow is: block the submit, ask, then call
+    // form.submit() on confirm -- which does not re-fire the submit event, so
+    // there is no loop. Optional attributes: data-confirm-title and
+    // data-confirm-button. Forms whose button carries btn--danger get the
+    // warning icon and a red confirm button automatically.
     document.addEventListener('submit', function (e) {
       const form = e.target.closest('form[data-confirm]');
       if (!form) return;
-      if (!window.confirm(form.dataset.confirm)) {
-        e.preventDefault();
-      }
+
+      e.preventDefault();
+
+      appConfirm({
+        title: form.dataset.confirmTitle,
+        text: form.dataset.confirm,
+        button: form.dataset.confirmButton,
+        danger: !!form.querySelector('.btn--danger')
+      }).then(ok => {
+        if (ok) form.submit();
+      });
     });
 
     // "Select all" checkbox in a table header drives every row checkbox and
@@ -1139,11 +1314,21 @@
       const form = table.querySelector('form[data-bulk-form]');
       if (!form) return;
 
-      const confirmText = btn.dataset.confirm;
-      if (confirmText && !window.confirm(confirmText)) return;
+      const go = () => {
+        form.action = btn.dataset.bulkAction;
+        form.submit();
+      };
 
-      form.action = btn.dataset.bulkAction;
-      form.submit();
+      if (!btn.dataset.confirm) return go();
+
+      appConfirm({
+        title: btn.dataset.confirmTitle,
+        text: btn.dataset.confirm,
+        button: btn.dataset.confirmButton,
+        danger: btn.classList.contains('btn--danger')
+      }).then(ok => {
+        if (ok) go();
+      });
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
