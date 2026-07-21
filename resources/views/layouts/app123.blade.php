@@ -872,28 +872,6 @@
       margin-top: 2px
     }
 
-
-    .user-menu { position: relative; }
-    .user-menu__button { border: 0; cursor: pointer; font-family: inherit; }
-    .user-menu__dropdown { display: none; position: absolute; right: 0; top: calc(100% + 10px); width: 280px; background: #fff; border: 1px solid var(--g-grey-300); border-radius: 14px; box-shadow: var(--shadow-2); padding: 10px; z-index: 1200; }
-    .user-menu.is-open .user-menu__dropdown { display: block; }
-    .user-menu__profile { display: flex; gap: 12px; align-items: center; padding: 10px; border-bottom: 1px solid var(--g-grey-100); margin-bottom: 6px; }
-    .user-menu__profile strong, .user-menu__profile span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 185px; }
-    .user-menu__profile span { color: var(--g-grey-700); font-size: 12px; margin-top: 2px; }
-    .avatar--large { width: 42px; height: 42px; flex: 0 0 42px; }
-    .user-menu__dropdown a, .user-menu__dropdown button { width: 100%; display: flex; align-items: center; gap: 10px; border: 0; background: transparent; color: var(--g-grey-900); text-decoration: none; padding: 10px; border-radius: 8px; cursor: pointer; font: inherit; text-align: left; }
-    .user-menu__dropdown a:hover, .user-menu__dropdown button:hover { background: var(--g-grey-100); }
-    .user-menu__dropdown .material-symbols-outlined { font-size: 20px; color: var(--g-grey-700); }
-    .account-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
-    .account-card { padding: 22px; }
-    .account-form { margin-top: 20px; }
-    .form-field { margin-bottom: 17px; }
-    .form-field label { display: block; margin-bottom: 7px; font-weight: 500; }
-    .form-field input { width: 100%; height: 43px; border: 1px solid var(--g-grey-300); border-radius: 8px; padding: 0 12px; font: inherit; outline: none; }
-    .form-field input:focus { border-color: var(--g-blue); box-shadow: 0 0 0 3px rgba(26,115,232,.12); }
-    .field-error { margin-top: 5px; color: var(--g-red); font-size: 12px; }
-    @media (max-width: 800px) { .account-grid { grid-template-columns: 1fr; } }
-
     @media (max-width:960px) {
       .rail {
         transform: translateX(-100%)
@@ -994,25 +972,7 @@
       <a href="{{ route('import.index') }}" class="btn btn--text" title="Import workbook">
         <span class="material-symbols-outlined">upload_file</span>
       </a>
-      <div class="user-menu">
-        <button type="button" class="avatar user-menu__button" onclick="this.parentElement.classList.toggle('is-open')" aria-label="Account menu">
-          {{ auth()->user()->initials() }}
-        </button>
-        <div class="user-menu__dropdown">
-          <div class="user-menu__profile">
-            <div class="avatar avatar--large">{{ auth()->user()->initials() }}</div>
-            <div>
-              <strong>{{ auth()->user()->name }}</strong>
-              <span>{{ auth()->user()->email }}</span>
-            </div>
-          </div>
-          <a href="{{ route('account.edit') }}"><span class="material-symbols-outlined">manage_accounts</span> My account</a>
-          <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit"><span class="material-symbols-outlined">logout</span> Logout</button>
-          </form>
-        </div>
-      </div>
+      <div class="avatar">OP</div>
     </div>
   </header>
 
@@ -1055,11 +1015,6 @@
       <span class="material-symbols-outlined">database</span> Raw Data Export
     </a>
 
-    <div class="rail__section">Account</div>
-    <a href="{{ route('account.edit') }}" class="rail__link {{ request()->routeIs('account.*') ? 'is-active' : '' }}">
-      <span class="material-symbols-outlined">manage_accounts</span> My Account
-    </a>
-
     <div class="rail__section">Tools</div>
     <a href="{{ route('import.index') }}" class="rail__link {{ request()->routeIs('import.*') ? 'is-active' : '' }}">
       <span class="material-symbols-outlined">history</span> Import history
@@ -1088,12 +1043,6 @@
 
   <script>
     setTimeout(() => document.querySelectorAll('.snackbar').forEach(s => s.remove()), 6000);
-
-    document.addEventListener('click', function (e) {
-      document.querySelectorAll('.user-menu.is-open').forEach(function (menu) {
-        if (!menu.contains(e.target)) menu.classList.remove('is-open');
-      });
-    });
 
     // Any form carrying data-confirm asks before it submits. Delegated, so it
     // covers rows rendered on every page without per-view wiring.
