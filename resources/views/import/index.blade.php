@@ -119,6 +119,15 @@
                     <span class="material-symbols-outlined">delete_sweep</span> Clear all
                 </button>
             </form> --}}
+            <form method="POST" action="{{ route('system.clear-imported') }}"
+                data-confirm="This deletes every raw data, CRM, invoice and student row plus the import history. Targets are kept. This cannot be undone."
+                data-confirm-title="Clear all imported data?" data-confirm-button="Yes, clear everything">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn--outlined btn--danger">
+                    <span class="material-symbols-outlined">delete_forever</span> Clear all imported data
+                </button>
+            </form>
         </div>
     </div>
 
@@ -199,25 +208,22 @@
                                 <td class="is-num">
                                     {{ $import->students_built ?: '–' }}
                                     @if ($import->students_skipped)
-                                        <span class="sub"
-                                            title="Archived students, left frozen">+{{ $import->students_skipped }}
+                                        <span class="sub" title="Archived students, left frozen">+{{ $import->students_skipped }}
                                             kept</span>
                                     @endif
                                 </td>
                                 <td class="is-num sub">{{ $import->humanSize() }}</td>
                                 <td class="is-num sub">{{ $import->humanDuration() }}</td>
-                                <td>
-                                    <form method="POST" action="{{ route('import.destroy', $import) }}"
-                                        style="display:inline"
+                                {{-- <td>
+                                    <form method="POST" action="{{ route('import.destroy', $import) }}" style="display:inline"
                                         data-confirm="Remove {{ $import->filename }} from the history? The rows it imported stay in place.">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn--sm btn--text btn--danger"
-                                            title="Remove from history">
+                                        <button type="submit" class="btn btn--sm btn--text btn--danger" title="Remove from history">
                                             <span class="material-symbols-outlined">delete</span>
                                         </button>
                                     </form>
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>
@@ -421,7 +427,7 @@
     </style>
 
     <script>
-        (function() {
+        (function () {
             var zone = document.getElementById('dropzone');
             var input = document.getElementById('fileInput');
             var label = document.getElementById('dropLabel');
@@ -432,39 +438,65 @@
                 zone.classList.add('is-set');
             }
 
-            input.addEventListener('change', function() {
+            input.addEventListener('change', function () {
                 if (input.files.length) show(input.files[0].name);
             });
 
-            ['dragenter', 'dragover'].forEach(function(evt) {
-                zone.addEventListener(evt, function(e) {
+            ['dragenter', 'dragover'].forEach(function (evt) {
+                zone.addEventListener(evt, function (e) {
                     e.preventDefault();
                     zone.classList.add('is-over');
                 });
             });
 
-            ['dragleave', 'drop'].forEach(function(evt) {
-                zone.addEventListener(evt, function(e) {
+            ['dragleave', 'drop'].forEach(function (evt) {
+                zone.addEventListener(evt, function (e) {
                     e.preventDefault();
                     zone.classList.remove('is-over');
                 });
             });
 
-            zone.addEventListener('drop', function(e) {
+            zone.addEventListener('drop', function (e) {
                 if (!e.dataTransfer.files.length) return;
                 input.files = e.dataTransfer.files;
                 show(e.dataTransfer.files[0].name);
             });
 
             // Replacing wipes everything, so make that an explicit decision.
-            document.getElementById('uploadForm').addEventListener('submit', function(e) {
-                if (document.getElementById('replaceBox').checked) {
-                    if (!confirm(
-                            'Replace existing data? CRM Data, Invoice, Raw Data and every student row will be cleared first.'
-                            )) {
-                        e.preventDefault();
-                    }
+            var uploadForm = document.getElementById('uploadForm');
+            var confirmedReplace = false;
+
+            uploadForm.addEventListener('submit', function (e) {
+                if (!document.getElementById('replaceBox').checked || confirmedReplace) return;
+
+                var message = 'CRM Data, Invoice, Raw Data and every student row will be cleared first.';
+
+                if (typeof Swal === 'undefined') {
+                    if (!confirm('Replace existing data? ' + message)) e.preventDefault();
+                    return;
                 }
+
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Replace existing data?',
+                    text: message,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, replace it',
+                    cancelButtonText: 'Cancel',
+                    confirmButtonColor: '#d93025',
+                    reverseButtons: true,
+                    focusCancel: true
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        // requestSubmit re-fires the submit event; the flag
+                        // lets it through this time.
+                        confirmedReplace = true;
+                        uploadForm.requestSubmit();
+                        confirmedReplace = false;
+                    }
+                });
             });
         })();
     </script>

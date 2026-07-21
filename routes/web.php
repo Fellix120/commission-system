@@ -71,4 +71,5 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/export/raw-data', [ExportController::class, 'raw'])->name('export.raw');
 
     Route::post('/system/migrate-fresh', [SystemController::class, 'fresh'])->name('system.fresh');
+    Route::delete('/system/clear-imported-data', [SystemController::class, 'clearImportedData'])->name('system.clear-imported');
 });
