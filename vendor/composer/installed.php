@@ -3,7 +3,7 @@
         'name' => 'eevs/commission-workspace',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '53dbc4c2c47c4046bb1562c98a589e253938ffa9',
+        'reference' => 'ce6ad2d1cd7b1097a35118b67d219d79ba644573',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -88,7 +88,7 @@
         'eevs/commission-workspace' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '53dbc4c2c47c4046bb1562c98a589e253938ffa9',
+            'reference' => 'ce6ad2d1cd7b1097a35118b67d219d79ba644573',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
