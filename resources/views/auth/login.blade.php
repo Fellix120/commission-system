@@ -11,5 +11,5 @@
     <label class="remember"><input type="checkbox" name="remember" value="1"> Keep me signed in</label>
     <button class="btn" type="submit">Login</button>
 </form>
-<div class="auth-footer">No account yet? <a href="{{ route('register') }}">Create an account</a></div>
+{{-- <div class="auth-footer">No account yet? <a href="{{ route('register') }}">Create an account</a></div> --}}
 @endsection
