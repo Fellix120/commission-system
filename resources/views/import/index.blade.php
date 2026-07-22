@@ -48,7 +48,7 @@
                     </span>
                 </label>
 
-                <button type="submit" class="btn btn--filled" style="width:100%; margin-top:16px">
+                <button type="submit" class="btn btn--filled" style=" margin-top:16px">
                     <span class="material-symbols-outlined">publish</span> Import
                 </button>
             </form>
